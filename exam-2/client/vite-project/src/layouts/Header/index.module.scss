@@ -1,0 +1,25 @@
+#header {
+  height: 100px;
+  width: 100%;
+  // background-color: red;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    h1 {
+      font-size: 20px;
+      color: #ffffff;
+    }
+  }
+  .links {
+    display: flex;
+    column-gap: 20px;
+    a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+  }
+}
