@@ -1,11 +1,13 @@
 import { useFormik } from "formik";
 import { Button, Checkbox, TextField } from "@mui/material";
 import style from "./index.module.scss";
-import { addOne } from "../../services/index";
+import { addOne, getAll } from "../../services/index";
 import { endpoint } from "../../services/constant";
 import { ProductsSchema } from "../../validations/productApi";
+import { useOutletContext } from "react-router";
 
 const AddProduct = () => {
+  const [setProducts] = useOutletContext();
   const formik = useFormik({
     initialValues: {
       title: "",
@@ -15,7 +17,15 @@ const AddProduct = () => {
     },
     onSubmit: (values, { resetForm }) => {
       addOne(endpoint.products, values)
-        .then((response) => {})
+        .then((response) => {
+          getAll(endpoint.products)
+            .then((response) => {
+              setProducts(response.data.data);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        })
         .catch((err) => {
           console.log(err);
         });
